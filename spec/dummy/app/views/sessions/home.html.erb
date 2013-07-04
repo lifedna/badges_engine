@@ -1,0 +1,26 @@
+<div id="bhwidget">…</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+var url = "http://beta.openbadges.org/displayer/5797/group/1957.json";
+$.getJSON(url, function(data) {
+  var i = 0;
+  var widgetcode = "<table>";
+  while (i < data.badges.length < 4) {
+    var badgeName = data.badges[i].assertion.badge.name;
+    var imgUrl = data.badges[i].assertion.badge.image;
+    var critUrl = data.badges[i].assertion.badge.criteria;
+    var assertUrl = data.badges[i].hostedUrl;
+    widgetcode = widgetcode + "<tr><td align='center'>";
+    widgetcode = widgetcode + "<a href='" + assertUrl + "'><img src='" + imgUrl + "' width='50' height='50' border='0'/></a><br /><a href='" + critUrl + "'>" + badgeName + "</a>";
+    widgetcode = widgetcode + "</td></tr>";
+    i += 1;
+    if (i === data.badges.length || i === 3) {
+      widgetcode = widgetcode + "</table>";
+      document.getElementById("bhwidget").innerHTML = widgetcode;
+      return;
+    }
+  }
+});
+</script>

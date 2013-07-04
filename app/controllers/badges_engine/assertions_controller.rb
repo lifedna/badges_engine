@@ -20,6 +20,7 @@ module BadgesEngine
     # GET /assertions
     # GET /assertions.json
     def index
+      binding.pry
       @assertions = Assertion.all
   
       respond_to do |format|

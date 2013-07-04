@@ -19,6 +19,7 @@ class SessionsController < ApplicationController
   protected
 
   def browserid_authenticate
+    # binding.pry
     assertion = params[:browserid_assertion]
 
     unless assertion
@@ -57,7 +58,7 @@ class SessionsController < ApplicationController
       logger.error "BrowserId returning bad JSON data: '#{response.body}'"
       return nil
     end
-    
+    # binding.pry
     if email && (status == 'okay')
       users = Array(User.where(:email=>bid_resp['email']))
       if users.size == 1

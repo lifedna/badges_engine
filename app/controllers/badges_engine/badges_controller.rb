@@ -3,6 +3,7 @@ module BadgesEngine
     # GET /badges
     # GET /badges.json
     def index
+      binding.pry
       @badges = Badge.all
   
       respond_to do |format|
